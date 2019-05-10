@@ -18,6 +18,7 @@ int main() {
                 getSpotInfo(m_graph);
                 break;
             case 3:
+                travelPath(m_graph);
                 break;
             case 4:
                 break;

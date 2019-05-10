@@ -4,6 +4,8 @@
 //
 
 #include "stdafx.h"
+#include "tourism.h"
+
 
 void createGraph(struct Graph &m_graph){
     char vexFile[200];
@@ -79,5 +81,33 @@ void getSpotInfo(struct Graph m_graph){
             }
         }
         cout<<sVex.name<<"->"<<m_graph.m_aVexs[index].name<<" "<<aEdge[i].length<<"m"<<endl;
+    }
+}
+
+void travelPath(struct Graph m_graph) {
+    cout<<"----tourist attraction navigation----"<<endl;
+    int num = getVexnum(m_graph);
+    for(int i = 0; i<num; i++){
+        cout<<m_graph.m_aVexs[i].id<<"-"<<m_graph.m_aVexs[i].name<<endl;
+    }
+    cout<<"enter a starting point number:";
+    int n;
+    cin>>n;
+    cout<<"navigation route:"<<endl;
+    PathList pList = NULL;
+    dfsTraverse(n,pList,m_graph);
+    PathList p1 = pList->next;
+    int count = 1;
+    while(p1 != NULL){
+        cout<<"route "<<count++<<":";
+        for(int i = 0; i<num; i++){
+            if(i != num-1){
+                cout<<m_graph.m_aVexs[p1->vexs[i]].name<<"->";
+            }
+            else{
+                cout<<m_graph.m_aVexs[p1->vexs[i]].name<<endl;
+            }
+        }
+        p1 = p1->next;
     }
 }

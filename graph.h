@@ -23,13 +23,20 @@ struct Edge{
     int length; //道路长度
 };
 
+struct Path{
+    int vexs[20];//保存一条路径
+    Path *next;
+};
+
+typedef Path * PathList;
+
 void init(struct Graph &m_graph);//初始化图结构
 int insertVex(Vex sVex, struct Graph &m_graph);//将顶点添加到顶点数组
 int insertEdge(Edge sEdge,struct Graph &m_graph, int n);//将边保存到邻接矩阵
 Vex getVex(int nVex,Graph m_graph);//查询指定顶点信息
 int findEdge(int nVex, Edge aEdge[], Graph m_graph);//查询与指定顶点相连的边
 int getVexnum(struct Graph m_graph);//获取当前顶点数
-
-
+void dfs(int nVex, bool visited[], int &nIndex, PathList &pList, Graph m_graph);
+void dfsTraverse(int nVex, PathList &pList, Graph m_graph);
 
 #endif //GRAPHCPRO_GRAPH_H
