@@ -38,5 +38,6 @@ int findEdge(int nVex, Edge aEdge[], Graph m_graph);//查询与指定顶点相�
 int getVexnum(struct Graph m_graph);//获取当前顶点数
 void dfs(int nVex, bool visited[], int &nIndex, PathList &pList, Graph m_graph);
 void dfsTraverse(int nVex, PathList &pList, Graph m_graph);
-
+int searchShortPath(int nVexStart, int nVexEnd, Edge aPath[], Graph m_graph);
+int findMinTree(Edge aPath[],Graph m_graph);
 #endif //GRAPHCPRO_GRAPH_H

@@ -87,4 +87,65 @@ void dfs(int nVex, bool *visited, int &nIndex, PathList &pList, Graph m_graph) {
     return;
 }
 
+int searchShortPath(int nVexStart, int nVexEnd, Edge *aPath, Graph m_graph) {
+    int dist[100];
+    bool flag[100];
+    int path[100];
+    int vexNum = getVexnum(m_graph);
+    for(int i = 0 ; i<vexNum; i++){
+        dist[i] = m_graph.m_aAdjMatrix[nVexStart][i];
+    }
+    memset(flag,0,sizeof(flag));
+    memset(path,0,sizeof(path));
+    flag[nVexStart] = true;
+    path[nVexStart] = nVexStart;
+    for(int i = 0; i < vexNum;i++){
+        path[i] = nVexStart;
+    }
+    for(int i = 0; i < vexNum-1; i++){
+        int min = 10000;
+        int index = 0;
+        for(int j = 0; j<vexNum; j++){
+            if(dist[j] < min && dist[j] != 0 && flag[j] == false){
+                index = j;
+                min = dist[j];
+            }
+        }
+
+        flag[index] = true;
+        for(int k = 0; k<vexNum; k++){
+            if(dist[k] > 0){
+                if(dist[k]> dist[index]+m_graph.m_aAdjMatrix[index][k] && flag[k] == false && m_graph.m_aAdjMatrix[index][k]){
+                    dist[k] = dist[index]+m_graph.m_aAdjMatrix[index][k];
+                    path[k] = index;
+                }
+            }else if(dist[k] == 0 && flag[k] == false){
+                if(m_graph.m_aAdjMatrix[index][k]>0) {
+                    dist[k] = dist[index]+m_graph.m_aAdjMatrix[index][k];
+                    path[k] = index;
+                }
+            }
+        }
+    }
+    int p = nVexEnd;
+    int count = 0;
+    while(p != nVexStart){
+        aPath[count].vex2 = p;
+        aPath[count].vex1 = path[p];
+        aPath[count].length = m_graph.m_aAdjMatrix[path[p]][nVexEnd];
+        p = path[p];
+        count++;
+    }
+    count--;
+    return count;
+}
+
+int findMinTree(Edge *aPath, Graph m_graph) {
+
+    return 0;
+}
+
+
+
+
 

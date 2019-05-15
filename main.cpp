@@ -21,6 +21,7 @@ int main() {
                 travelPath(m_graph);
                 break;
             case 4:
+                findShortPath(m_graph);
                 break;
             case 5:
                 break;

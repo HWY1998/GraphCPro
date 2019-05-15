@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/Users/huangwenyu/CLionProjects/GraphCPro/Graph.cpp
+stdafx.h
+/Users/huangwenyu/CLionProjects/GraphCPro/stdafx.h
+graph.h
+/Users/huangwenyu/CLionProjects/GraphCPro/graph.h
+
 /Users/huangwenyu/CLionProjects/GraphCPro/Tourism.cpp
 stdafx.h
 /Users/huangwenyu/CLionProjects/GraphCPro/stdafx.h
@@ -13,6 +19,14 @@ tourism.h
 /Users/huangwenyu/CLionProjects/GraphCPro/tourism.h
 
 /Users/huangwenyu/CLionProjects/GraphCPro/graph.h
+
+/Users/huangwenyu/CLionProjects/GraphCPro/main.cpp
+stdafx.h
+/Users/huangwenyu/CLionProjects/GraphCPro/stdafx.h
+
+/Users/huangwenyu/CLionProjects/GraphCPro/menu.cpp
+stdafx.h
+/Users/huangwenyu/CLionProjects/GraphCPro/stdafx.h
 
 /Users/huangwenyu/CLionProjects/GraphCPro/menu.h
 

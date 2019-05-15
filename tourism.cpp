@@ -111,3 +111,33 @@ void travelPath(struct Graph m_graph) {
         p1 = p1->next;
     }
 }
+
+void findShortPath(struct Graph m_graph) {
+    cout<<"----search shortest path----"<<endl;
+    int num = getVexnum(m_graph);
+    for(int i = 0; i<num; i++){
+        cout<<m_graph.m_aVexs[i].id<<"-"<<m_graph.m_aVexs[i].name<<endl;
+    }
+    int start,end;
+    cout<<"enter the starting point number:";
+    cin>>start;
+    cout<<"enter the ending point number:";
+    cin>>end;
+    Edge path[100]={};
+    int len = searchShortPath(start,end,path,m_graph);
+    cout<<"the shortest path:";
+    int sum = 0;
+    cout<<m_graph.m_aVexs[path[len].vex1].name;
+    for(int i = len; i>=0; i--){
+        cout<<"->"<<m_graph.m_aVexs[path[i].vex2].name;
+        sum += path[i].length;
+    }
+    cout<<endl;
+    cout<<"the shortest distance:"<<sum<<endl;
+}
+
+void designPath(struct Graph m_graph) {
+
+}
+
+
