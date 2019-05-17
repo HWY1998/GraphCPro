@@ -24,6 +24,7 @@ int main() {
                 findShortPath(m_graph);
                 break;
             case 5:
+                designPath(m_graph);
                 break;
             case 0:
                 return 0;

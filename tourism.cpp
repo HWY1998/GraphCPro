@@ -137,7 +137,13 @@ void findShortPath(struct Graph m_graph) {
 }
 
 void designPath(struct Graph m_graph) {
-
+    cout<<"----laid circuit planning----"<<endl;
+    Edge path[100];
+    int len = findMinTree(path,m_graph);
+    for(int i = 0; i < getVexnum(m_graph)-1; i++){
+        cout<<m_graph.m_aVexs[path[i].vex1].name<<" - "<<m_graph.m_aVexs[path[i].vex2].name<<" "<<path[i].length<<endl;
+    }
+    cout<<"length:"<<len<<endl;
 }
 
 

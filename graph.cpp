@@ -141,8 +141,31 @@ int searchShortPath(int nVexStart, int nVexEnd, Edge *aPath, Graph m_graph) {
 }
 
 int findMinTree(Edge *aPath, Graph m_graph) {
-
-    return 0;
+    bool flag[100];
+    memset(flag,0,sizeof(flag));
+    flag[0] = true;
+    int sum = 0;
+    for(int k = 0; k<getVexnum(m_graph)-1; k++){
+        int min = 100000;
+        int start = -1, end = -1;
+        for(int i = 0; i < getVexnum(m_graph); i++){
+            if(flag[i]){
+                for(int j = 0; j<getVexnum(m_graph); j++){
+                    if(m_graph.m_aAdjMatrix[i][j] < min && flag[j] == false && m_graph.m_aAdjMatrix[i][j]){
+                        min = m_graph.m_aAdjMatrix[i][j];
+                        start = i;
+                        end = j;
+                    }
+                }
+            }
+        }
+        aPath[k].vex1 = start;
+        aPath[k].vex2 = end;
+        aPath[k].length = min;
+        sum += min;
+        flag[end] = true;
+    }
+    return sum;
 }
 
 
