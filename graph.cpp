@@ -8,17 +8,20 @@
 
 int path[100];
 void init(struct Graph &m_graph){
+    //图的邻接矩阵和顶点数组初始化
     memset(m_graph.m_aAdjMatrix,0,sizeof(m_graph.m_aAdjMatrix));
     memset(m_graph.m_aVexs,0,sizeof(m_graph.m_aVexs));
 }
 
 int insertVex(Vex sVex, struct Graph &m_graph){
+    //将顶点放入图的顶点数组，并且返回顶点个数
     m_graph.m_aVexs[m_graph.m_nVexNum] = sVex;
     m_graph.m_nVexNum++;
     return m_graph.m_nVexNum;
 }
 
 int insertEdge(Edge sEdge, struct Graph &m_graph, int n){
+    //将边放入邻接矩阵，无边为0
     m_graph.m_aAdjMatrix[sEdge.vex1][sEdge.vex2] = m_graph.m_aAdjMatrix[sEdge.vex2][sEdge.vex1] = sEdge.length;
     n++;
     return n;
@@ -53,7 +56,7 @@ void dfsTraverse(int nVex, PathList &pList, Graph m_graph) {
     bool visited[20];
     memset(visited,0,sizeof(visited));
     int nIndex = 0;
-    PathList head = pList = (PathList)malloc(sizeof(Path));
+    PathList head = pList = (PathList)malloc(sizeof(Path));//为链表初始化头节点，来方便将链表打印出来
     dfs(nVex,visited,nIndex,pList,m_graph);
     pList = head;
 }
@@ -99,20 +102,24 @@ int searchShortPath(int nVexStart, int nVexEnd, Edge *aPath, Graph m_graph) {
     memset(path,0,sizeof(path));
     flag[nVexStart] = true;
     path[nVexStart] = nVexStart;
+    //初始化路径
     for(int i = 0; i < vexNum;i++){
         path[i] = nVexStart;
     }
+
     for(int i = 0; i < vexNum-1; i++){
         int min = 10000;
         int index = 0;
+        //找还未添加过的顶点中的距离最小值
         for(int j = 0; j<vexNum; j++){
             if(dist[j] < min && dist[j] != 0 && flag[j] == false){
                 index = j;
                 min = dist[j];
             }
         }
-
+        //添加找到的顶点
         flag[index] = true;
+        //更新其他顶点的最短距离
         for(int k = 0; k<vexNum; k++){
             if(dist[k] > 0){
                 if(dist[k]> dist[index]+m_graph.m_aAdjMatrix[index][k] && flag[k] == false && m_graph.m_aAdjMatrix[index][k]){
@@ -129,10 +136,11 @@ int searchShortPath(int nVexStart, int nVexEnd, Edge *aPath, Graph m_graph) {
     }
     int p = nVexEnd;
     int count = 0;
+    //将路径存到aPath中
     while(p != nVexStart){
         aPath[count].vex2 = p;
         aPath[count].vex1 = path[p];
-        aPath[count].length = m_graph.m_aAdjMatrix[path[p]][nVexEnd];
+        aPath[count].length = m_graph.m_aAdjMatrix[aPath[count].vex1][aPath[count].vex2];
         p = path[p];
         count++;
     }
